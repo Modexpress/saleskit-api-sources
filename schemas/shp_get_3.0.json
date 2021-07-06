@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "description": "Operation to cancel posted orders",
+  "description": "Operation to get order details by Id",
   "properties": {
     "SenderRelationId": {
       "description": "The party that submits the SHP message.",
