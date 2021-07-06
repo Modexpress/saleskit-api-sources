@@ -1,0 +1,36 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"description": "Operation to cancel posted orders",
+	"properties": {
+		"SenderRelationId": {
+			"description": "The party that submits the SHP message.",
+			"$comment": "Id assigned by Modexpress",
+			"type": "string",
+			"maxLength": 40,
+			"examples": [
+				"1111111"
+			]
+		},
+		"OrderingPartyRelationId": {
+			"description": "The party on whose behalf the goods in the order had to be delivered.",
+			"$comment": "Id assigned by Modexpress",
+			"type": "string",
+			"maxLength": 40,
+			"examples": [
+				"1111111"
+			]
+		},
+		"Id": {
+			"description": "The identification that the ordering party uses for the order. \r\nOn the basis of this identification Modexpress checks whether the order exists for the ordering party (in Modexpress ERP/WMS) and if cancellation is possible. If so the order will be cancelled.",
+			"type": "string",
+			"maxLength": 40,
+			"examples": [
+				"O21-00001"
+			]
+		}
+	},
+	"required": [
+		"Id"
+	],
+	"additionalProperties": false
+}
