@@ -20,6 +20,7 @@
 		},
 		"Id": {
 			"description": "The identification that the ordering party uses for the order. \r\nOn the basis of this identification Modexpress checks whether this order already exists for the ordering party (in Modexpress ERP/WMS). Cancelled orders are not taken into consideration. \r\nIf an order already exists, the new order is rejected without question.",
+			"minLength": 1,
 			"maxLength": 40,
 			"examples": [
 				"O21-000001"
@@ -310,7 +311,9 @@
 								"description": "The party that must be regarded as the buyer or receiver of the order and that is known/registered at Modexpress as a business relation with an address. The party is indicated by means of an Id assigned by Modexpress. These types of parties must have been registered in advance with Modexpress, and no address can be indicated in the order.\r\nThe Id can only be used for parties of type BuyerId or ReceiverId.",
 								"$comment": "Id assigned by Modexpress. Only to be used in combination with BuyerId or ReceiverId.",
 								"type": "integer",
-								"minimum": 0
+                "minimum": 1,
+								"maximum": 9999999,
+                "example": 123456
 							},
 							"ExternalId": {
 								"description": "For %Address types the ExterneId can be included as a reference in the order. For these parties, the applicable address must also be specified in the order.\r\nIn case of a DropSiteAddress the ExternalId can be used for the pickuppoint-id/number.",
@@ -320,6 +323,7 @@
 							"Name1": {
 								"description": "The name of the party.\r\nOrder of display on documents: line 1\r\n\r\nOnly applicable for the %Address party types.\r\nMandatory for the %Address party types.",
 								"type": "string",
+								"minLength": 1,
 								"maxLength": 50,
 								"examples": [
 									"John Doe"
@@ -328,11 +332,15 @@
 							"Name2": {
 								"description": "'The parties ‘For attention of’.\r\nOrder of display on documents: line 2\r\n\r\nOnly applicable for the %Address party types.",
 								"type": "string",
-								"maxLength": 50
+								"maxLength": 50,
+                "examples": [
+									"John Doe"
+								]
 							},
 							"AddressLine1": {
 								"description": "The street that applies to the party.\r\nOrder of display on documents: line 4\r\n\r\nOnly applicable for the %Address party types.\r\nMandatory for the %Address party types.",
 								"type": "string",
+								"minLength": 1,
 								"maxLength": 50,
 								"examples": [
 									"10 Downing Street"
@@ -341,23 +349,30 @@
 							"AddressLine2": {
 								"description": "A free/extra text line for the party that is part of the address.\r\nOrder of display on documents: line 5\r\n\r\nOnly applicable for the %Address party types.",
 								"type": "string",
-								"maxLength": 50
+								"maxLength": 50,
+                "examples": [
+                  "More address details here"
+                ]
 							},
 							"HouseNumber": {
 								"description": "The house number that applies to the party.\r\nOrder of display on documents: line 4\r\n\r\nOnly applicable for the %Address party types.",
 								"type": "integer",
 								"minimum": 1,
-								"maximum": 999999
+								"maximum": 999999,
+                "example": 1
 							},
 							"HouseNumberExtension": {
 								"description": "The house number addition that applies to the party.\r\nOrder of display on documents: line 4\r\n\r\nOnly applicable for the %Address party types.",
 								"type": "string",
-								"maxLength": 10
+								"maxLength": 10,
+                "example": "A"
 							},
 							"DeliveryInstruction": {
 								"description": "An instruction for the delivery. \r\nOrder of display on documents: line 3\r\n\r\nOnly applicable for the %Address party types.",
 								"type": "string",
-								"maxLength": 30
+								"maxLength": 30,
+                "example": "Additional instruction"
+
 							},
 							"PostalCode": {
 								"description": "The postal code / ZIP code that applies to the party.\r\nOrder of display on documents: line 6\r\n\r\nOnly applicable for the %Address party types.\r\n\r\nMandatory for parties with Country = NL.\r\n",
@@ -370,6 +385,7 @@
 							"City": {
 								"description": "The town/city that applies to the party.\r\nOrder of display on documents: line 6\r\n\r\nOnly applicable for the %Address party types.",
 								"type": "string",
+								"minLength": 1,
 								"maxLength": 50,
 								"examples": [
 									"London"
@@ -378,7 +394,8 @@
 							"Region": {
 								"description": "The province/region/state that applies to the party.\r\nOrder of display on documents: line 7\r\n\r\nOnly applicable for the %Address party types.",
 								"type": "string",
-								"maxLength": 35
+								"maxLength": 35,
+                "example": "Region"
 							},
 							"Country": {
 								"description": "The country that applies to the party. The designation should be made according to iso2 code.\r\nOrder of display on documents: line 8 (country name will be displayed)\r\n\r\nMandatory for the %Address party types.",
@@ -393,17 +410,20 @@
 							"EmailAddress": {
 								"description": "The email address for the party.\r\nOnly applicable for the %Address party types.",
 								"type": "string",
+                "format": "email",
 								"maxLength": 80
 							},
 							"PhoneNumber": {
 								"description": "The fixed line telephone number for the party.\r\nOnly applicable for the %Address party types.",
 								"type": "string",
-								"maxLength": 40
+								"maxLength": 40,
+                "example": "040-12345678"
 							},
 							"MobileNumber": {
 								"description": "The mobile phone number for the party.\r\nOnly applicable for the %Address party types.",
 								"type": "string",
-								"maxLength": 40
+								"maxLength": 40,
+                "example": "06-012345678"
 							},
 							"LanguageCode": {
 								"description": "The language of the documents to be included with the shipment (packing slip). ISO 639-2 codes are used.\r\nOnly applicable for the %Address party types.\r\n\r\nIf multiple addresses are indicated, the LanguageCode to be used is:\r\n1) DropSiteAddress, if address not specified or no language code specified, then\r\n2) ReceiverAddress, if address not specified or no language code specified, then\r\n3) BuyerAddress, if address not specified or no language code specified, then\r\n4) InvoiceAddress, if address not specified or no language code specified, then\r\n5) Last address mentioned in the Order.Party, if no language code specified, then\r\n6) By default the language code is NLD",
@@ -416,7 +436,10 @@
 									"ENG",
 									"DEU",
 									"FRA"
-								]
+								],
+                "examples": [
+                  "NLD"
+                ]
 							}
 						},
 						"required": [
@@ -457,29 +480,34 @@
 							"SequenceNumber": {
 								"description": "The execution sequence number of the instruction. This can be used to send the sequence in which the instructions should be implemented.\r\nThe number must be unique among all the order instructions.\r\n\r\nThis field is not used for Instructiontype FILE",
 								"type": "integer",
-								"exclusiveMinimum": 0,
-								"maximum": 999
+								"minimum": 1,
+								"maximum": 999,
+                "example": 2
 							},
 							"Code": {
 								"description": "Indication of the instruction by means of a code.\r\n- In case of VAS an example code is 10 (= remove price label FP/GOH).\r\n- In case of VAS the code 'COD' is used to indicate a Cash On Delivery form has to be printed (also necessary OrderLine/Price type 'Sale' and if necessary Order/FinInfo type 'CodSurcharge')\r\n- In case of HANDLING the specific codes in use are SOURCE and PICK\r\n- In case of FILE the specific codes in use are PRICELABEL, INVOICE, THXNOTE\r\n- In case of TEXT the specific codes in use are VATNUMBER, EORINUMBER, RECVVAT, RECEORI, COCNUMBER, CEONAME, CUSTOMERID (in case of export to countries outside the EU, VATNUMBER must be specified)\r\n\r\nIf no specific code and no description is relevant than the instruction type must also be declared as instruction code.",
 								"$comment": "Types assigned by Modexpress",
 								"type": "string",
+								"minLength": 1,
 								"maxLength": 10
 							},
 							"Description": {
 								"description": "Indication of the instruction by means of a description.\r\n\r\nAn example description is 'packaging shipment in red wrapping paper'.\r\n\r\nIf no specific description is relevant than the instruction code must be declared.\r\n\r\nThis field is not used for Instructiontype FILE",
 								"type": "string",
-								"maxLength": 156
+								"maxLength": 156,
+                "example": "Description"
 							},
 							"Info": {
 								"description": "The info to be used/printed:\r\n- In case of type HANDLING with code SOURCE the name of the webshop must be mentioned (source of the order) to indicate source specific handling for the order.\r\n- In case of type HANDLING with code PICK the pick strategie must be given:\r\nSTYLE, STYLECOLOUR or STYLECOLOURSIZE\r\n- In case of type FILE with code PRICELABEL, INVOICE or THXNOTE the name of the supplied file must be mentioned, including the extension of the file.\r\n- In Case of type TEXT with code VATNUMBER, EORINUMBER, RECVVAT, RECEORI,  COCNUMBER, CEONAME or CUSTOMERID (consumer DHL post number) the text (number or name) to be printed must be mentioned.",
 								"type": "string",
-								"maxLength": 70
+								"maxLength": 70,
+                "example": "Description ..."
 							}
 						},
 						"required": [
 							"Type",
-							"SequenceNumber"
+							"SequenceNumber",
+							"Code"
 						],
 						"additionalProperties": false
 					}
@@ -498,6 +526,7 @@
 							"Id": {
 								"description": "The identification that the ordering party uses for the order line.",
 								"type": "string",
+								"minLength": 1,
 								"maxLength": 50,
 								"examples": [
 									"1"
@@ -506,13 +535,15 @@
 							"LineReference": {
 								"description": "The reference that the ordering party uses for the order line.",
 								"type": "string",
-								"maxLength": 10
+								"maxLength": 10,
+                "example": "LineReference"
 							},
 							"Quantity": {
 								"description": "The number of items of the article to be delivered.",
 								"type": "integer",
-								"exclusiveMinimum": 0,
-								"maximum": 999999
+								"minimum": 1,
+								"maximum": 999999,
+                "example": 4
 							},
 							"StockType": {
 								"description": "Designation of the type of stock that must be delivered. Using the stock type, it is possible to differentiate according to different types of stock that must be maintained separately for an article (both in the operation and administratively).\r\n\r\nThe standaard stock types are (other types are possible):\r\n- RGL - regular or A-choice stock\r\n- RGLRJC - regular reject or B-choice stock\r\n\r\nIf no StockType is indicated the delivery is assumed to be regular stock (RGL).",
@@ -523,12 +554,16 @@
 							"AlternativeDescription": {
 								"description": "Description of the article to be displayed on the packing slip. \r\nThis description is the alternative to the description registered in the SKU data.",
 								"type": "string",
-								"maxLength": 60
+								"maxLength": 60,
+                "examples": [
+                  "Alternative description..."
+                ]
 							},
 							"ClientReference": {
 								"description": "Reference used by the buyer/recipient for the order line.",
 								"type": "string",
-								"maxLength": 10
+								"maxLength": 10,
+                "example": "ClientReference"
 							},
 							"BackorderIndication": {
 								"description": "Indication whether it is permissible to take an order in backorder. This is particularly relevant if insufficient stock can be reserved for the order line.\r\nThe handling is also dependent on 'PartialDelivery' on order level. It is possible to take a part of an orderline into backorder.\r\n\r\nStandard value = YES (on line level).",
@@ -539,7 +574,8 @@
 								"enum": [
 									"Y",
 									"N"
-								]
+								],
+                "example": "Y"
 							},
 							"Article": {
 								"type": "object",
@@ -548,6 +584,7 @@
 										"description": "The identification that the owner uses for the SKU to be delivered. This is usually a logical Id. Many owners use the combination of STYLE+COLOUR+SIZE as a logical Id.",
 										"$comment": "WMS interface limited to A24",
 										"type": "string",
+										"minLength": 1,
 										"maxLength": 250
 									},
 									"LotNumber": {
@@ -619,12 +656,13 @@
 												"SequenceNumber": {
 													"description": "The execution sequence number of the instruction. This can be used to send the sequence in which the instructions should be implemented.\r\nThe number must be unique among all the orderline instructions.",
 													"type": "integer",
-													"exclusiveMinimum": 0,
+													"minimum": 1,
 													"maximum": 999
 												},
 												"Code": {
 													"description": "Indication of the instruction by means of a code.\r\nOnly applicable for type VAS\r\n\r\nIf no specific code and no description is relevant than the instruction type must also be declared as instruction code.",
 													"type": "string",
+													"minLength": 1,
 													"maxLength": 10
 												},
 												"Description": {

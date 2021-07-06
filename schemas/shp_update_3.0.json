@@ -1,0 +1,231 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"description": "Operation to update shipping codes and shipping relevant addresses",
+	"properties": {
+		"SenderRelationId": {
+			"description": "The party that submits the SHP message.",
+			"$comment": "Id assigned by Modexpress",
+			"type": "string",
+			"maxLength": 40,
+			"examples": [
+				"1111111"
+			]
+		},
+		"OrderingPartyRelationId": {
+			"description": "The party on whose behalf the goods in the order had to be delivered.",
+			"$comment": "Id assigned by Modexpress",
+			"type": "string",
+			"maxLength": 40,
+			"examples": [
+				"1111111"
+			]
+		},
+		"Id": {
+			"description": "The identification that the ordering party uses for the order. \r\nOn the basis of this identification Modexpress checks whether the order exists for the ordering party (in Modexpress ERP/WMS) and if the update is possible. If so the order will be updated.",
+			"type": "string",
+			"maxLength": 40,
+			"examples": [
+				"O21-000001"
+			]
+		},
+		"ShipmentCode": {
+			"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+			"$comment": "Codes agreed with Modexpress",
+			"type": "string",
+			"maxLength": 5,
+			"examples": [
+				"DHE"
+			]
+		},
+		"ShipmentService": {
+			"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+			"$comment": "Services agreed with Modexpress (depending on options offered by carrier)",
+			"type": "string",
+			"maxLength": 20,
+			"examples": [
+				"EXPRESS"
+			]
+		},
+		"ReturnShipmentCode": {
+			"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+			"$comment": "Codes agreed with Modexpress",
+			"type": "string",
+			"maxLength": 5
+		},
+		"ReturnShipmentService": {
+			"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+			"$comment": "Services agreed with Modexpress (depending on options offered by carrier)",
+			"type": "string",
+			"maxLength": 20
+		},
+		"Parties": {
+			"type": "object",
+			"properties": {
+				"Party": {
+					"type": "array",
+					"minItems": 1,
+					"maxItems": 2,
+					"items": {
+						"type": "object",
+						"properties": {
+							"Type": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 20,
+								"enum": [
+									"ReceiverAddress",
+									"DropSiteAddress"
+								],
+								"examples": [
+									"ReceiverAddress"
+								]
+							},
+							"Id": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"$comment": "Id assigned by Modexpress.",
+								"type": "integer",
+								"minimum": 1,
+								"maximum": 9999999,
+                "example": 123456
+							},
+							"ExternalId": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 35
+							},
+							"Name1": {
+								"description": "Mandatory for the %Address party types.\r\n\r\nNote that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 50,
+								"examples": [
+									"John Doe"
+								]
+							},
+							"Name2": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 50,
+                "examples": [
+									"John Doe"
+								]
+							},
+							"AddressLine1": {
+								"description": "Mandatory for the %Address party types.\r\n\r\nNote that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 50,
+								"examples": [
+									"10 Downing Street"
+								]
+							},
+							"AddressLine2": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 50,
+                "examples": [
+                  "More address details here"
+                ]
+							},
+							"HouseNumber": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "number",
+								"minimum": 1,
+								"maximum": 999999,
+                "example": 1
+							},
+							"HouseNumberExtension": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 10,
+                "example": "A"
+							},
+							"DeliveryInstruction": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 30,
+                "example": "Additional instruction"
+							},
+							"PostalCode": {
+								"description": "Mandatory for parties with Country = NL.\r\n\r\nNote that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 20,
+								"examples": [
+									"SW1A 2AB"
+								]
+							},
+							"City": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 50,
+								"examples": [
+									"London"
+								]
+							},
+							"Region": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 35,
+                "example": "Region"
+							},
+							"Country": {
+								"description": "Mandatory for the %Address party types.\r\n\r\nNote that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"$comment": "iso2",
+								"type": "string",
+								"minLength": 2,
+								"maxLength": 2,
+								"examples": [
+									"GB"
+								]
+							},
+							"EmailAddress": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+                "format": "email",
+								"maxLength": 80
+							},
+							"PhoneNumber": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 40,
+                "example": "040-12345678"
+							},
+							"MobileNumber": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"maxLength": 40,
+                "example": "06-012345678"
+							},
+							"LanguageCode": {
+								"description": "Note that if this field is not filled or included in the call, the original value of this field of the order will be deleted.",
+								"type": "string",
+								"minLength": 3,
+								"maxLength": 3,
+								"enum": [
+									"NLD",
+									"ENG",
+									"DEU",
+									"FRA"
+								],
+                "examples": [
+                  "NLD"
+                ]
+							}
+						},
+						"required": [
+							"Type"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"Party"
+			],
+			"additionalProperties": false
+		}
+	},
+	"required": [
+		"Id",
+		"Parties"
+	],
+	"additionalProperties": false
+}
