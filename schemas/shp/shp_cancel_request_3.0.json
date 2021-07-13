@@ -1,0 +1,21 @@
+{
+  "required": [
+    "Id"
+  ],
+  "type": "object",
+  "properties": {
+    "SenderRelationId": {
+      "type": "string",
+      "description": "The party that submits the order."
+    },
+    "OrderingPartyRelationId": {
+      "type": "string",
+      "description": "The party on whose behalf the goods in the order have to be delivered."
+    },
+    "Id": {
+      "type": "string",
+      "description": "The identification that the ordering party uses for the order. On the basis of this identification CB checks whether the order exists for the ordering party (in CB ERP/WMS) and if the update is possible. If so the order will be updated."
+    }
+  },
+  "$schema": "http://json-schema.org/draft-04/schema#"
+}
