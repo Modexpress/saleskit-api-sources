@@ -9,14 +9,14 @@ The Modexpress Receipt Orders webhook allows you to stay informed about order st
 | action                        | string   | The specific activity that triggered the event which defaults to order.status.update |
 | payload                       | object   | Container for the payload                                                            |
 | payload.Id                    | string   | The id of the order for which the status was updated                                 |
-| payload.Type                  | string   | Designation of the order type                                                        |
+| payload.Type                  | string   | Designation of the order type: either `PURCHASE` or `RETURN`                         |
 | payload.ProcessingStatus      | object   | Container for the order status detail information                                    |
 | payload.ProcessingStatus.Id   | string   | The status Id (see table below)                                                      |
 | payload.ProcessingStatus.Name | string   | The order status description                                                         |
 
 ---
 
-**Status field values**
+**Processing status Id field values**
 
 | **Processing status Id**  | **Name**    | **Description** |
 | --------------------------| ----------- |------------------
