@@ -6,4 +6,5 @@ A repository that contains the sources for the Modexpress Saleskit API
 JSON Schemas
 ===
 
-- `/shp`: JSON schemas for outbound orders POST, PUT, GET and DELETE methods (request and response body)
+- `/shp`: JSON schemas for outbound orders `POST`, `PUT`, `GET` and `DELETE` methods (request and response body) and webhook specification
+- `/rcp`: JSON schema for receipt orders `POST` method and webhook specification
