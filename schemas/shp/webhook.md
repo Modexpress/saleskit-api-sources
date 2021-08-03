@@ -2,7 +2,7 @@
 
 **Webhook "Outbound Orders"**
 
-The Modexpress Outbound Orders webhook allows you to stay informed about order status changes. When the order.status.update event is triggered and you have subscribed to this event update, we&#39;ll send a `HTTP POST` payload to the webhook&#39;s configured URL. The webhook payload for outbound orders contains the following properties:
+The Modexpress Outbound Orders webhook allows you to stay informed about order status changes. When the `shp.status.update` event is triggered and you have subscribed to this event update, we&#39;ll send a `HTTP POST` payload to the webhook&#39;s configured URL. The webhook payload for outbound orders contains the following properties:
 
 | **Key**                       | **Type** | **Description**                                                                      |
 | ----------------------------- | -------- | ------------------------------------------------------------------------------------ |
@@ -13,21 +13,25 @@ The Modexpress Outbound Orders webhook allows you to stay informed about order s
 | payload.ProcessingStatus.Id   | string   | The status Id (see table below)                                                      |
 | payload.ProcessingStatus.Name | string   | The order status description                                                         |
 
+---
+
 **Status field values**
 
-| **Order status Id** | **Name**    |
-| ------------------- | ----------- |
-| N                   | New         |
-| I                   | In progress |
-| P                   | Packed      |
-| S                   | Shipped     |
-| C                   | Cancelled   |
+| **Processing status Id**  | **Name**    |
+| --------------------------| ----------- |
+| N                         | New         |
+| I                         | In progress |
+| P                         | Packed      |
+| S                         | Shipped     |
+| C                         | Cancelled   |
+
+---
 
 **Webhook payload example**
 
 ```json
 {
-  "action": "order.status.update",
+  "action": "shp.status.update",
   "payload": {
     "Id": "123456",
     "ProcessingStatus": {
