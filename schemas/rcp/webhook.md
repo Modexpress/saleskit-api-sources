@@ -21,7 +21,7 @@ The Modexpress Receipt Orders webhook allows you to stay informed about order st
 | **Processing status Id**  | **Name**    | **Description** |
 | --------------------------| ----------- |------------------
 | N                         | New         | New, not yet started
-| P                         | Packed      | In progress, receipt has started
+| P                         | In Progress | In progress, receipt has started
 | C                         | Cancelled   | Closed, receipt has been closed
 
 ---
