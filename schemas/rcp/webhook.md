@@ -10,9 +10,9 @@ The Modexpress Receipt Orders webhook allows you to stay informed about order st
 | payload                       | object   | Container for the payload                                                            |
 | payload.Id                    | string   | The id of the order for which the status was updated                                 |
 | payload.Type                  | string   | Designation of the order type: either `PURCHASE` or `RETURN`                         |
-| payload.ProcessingStatus      | object   | Container for the order status detail information                                    |
+| payload.ProcessingStatus      | object   | Container for the receipt order status detail information                            |
 | payload.ProcessingStatus.Id   | string   | The status Id (see table below)                                                      |
-| payload.ProcessingStatus.Name | string   | The order status description                                                         |
+| payload.ProcessingStatus.Name | string   | The receipt order status description                                                 |
 
 ---
 
